@@ -3,7 +3,12 @@ import { ParsedUrlQuery } from "querystring";
 import React from "react";
 
 const P = ({ postId }: { postId: string }) => {
-  return <div>{postId}</div>;
+  return (
+    <div>
+      {postId}
+      {process.env.NEXT_PUBLIC_USERNAME}
+    </div>
+  );
 };
 
 export default P;
@@ -26,6 +31,8 @@ export const getStaticProps = async ({
     data: string;
   };
 }) => {
+  console.log(process.env.USERNAME);
+
   const response = await fetch(
     `https://jsonplaceholder.typicode.com/users/${params?.postid}`
   );
