@@ -1,6 +1,7 @@
 import { NextComponentType, NextPageContext } from "next";
 import { Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
+import React from "react";
 
 export default function App({
   Component,
