@@ -7,7 +7,10 @@ const theme = {
     primary: "#0070f3"
   }
 };
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps }
+}: AppProps) {
   return (
     <ThemeProvider theme={theme}>
       <Component {...pageProps} />
