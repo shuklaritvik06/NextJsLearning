@@ -1,4 +1,5 @@
-import { GetStaticProps } from "next";
+import { PreviewData } from "next";
+import { ParsedUrlQuery } from "querystring";
 import React from "react";
 
 const P = ({ postId }: { postId: string }) => {
@@ -14,11 +15,28 @@ export function getStaticPaths() {
   };
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps = async ({
+  params,
+  preview,
+  previewData
+}: {
+  params: ParsedUrlQuery;
+  preview: boolean;
+  previewData: {
+    data: string;
+  };
+}) => {
   const response = await fetch(
     `https://jsonplaceholder.typicode.com/users/${params?.postid}`
   );
   const data = await response.json();
+  if (preview) {
+    return {
+      props: {
+        postId: "preview " + previewData.data
+      }
+    };
+  }
   return {
     props: {
       postId: data.name
