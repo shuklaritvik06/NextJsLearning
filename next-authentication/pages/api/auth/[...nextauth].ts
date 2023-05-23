@@ -8,6 +8,7 @@ export const authOptions = {
       clientSecret: process.env.GOOGLE_SECRET as string
     })
   ],
+  database: process.env.DB_URL,
   secret: process.env.JWT_SECRET
 };
 
